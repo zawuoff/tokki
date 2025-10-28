@@ -8,7 +8,6 @@ import com.fouwaz.tokki_learn.data.datastore.userPreferencesDataStore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -20,6 +19,8 @@ sealed class OnboardingStep {
     data object InstagramIntro : OnboardingStep()
     data object InstagramNotification : OnboardingStep()
     data object Exercise : OnboardingStep()
+    // New summary screen shown after the Exercise tutorial completes
+    data object ExerciseSummary : OnboardingStep()
 }
 
 class OnboardingViewModel(application: Application) : AndroidViewModel(application) {
@@ -56,6 +57,10 @@ class OnboardingViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun onExerciseContinue() {
+        _currentStep.value = OnboardingStep.ExerciseSummary
+    }
+
+    fun onExerciseSummaryContinue() {
         setCompleted()
     }
 
@@ -67,6 +72,7 @@ class OnboardingViewModel(application: Application) : AndroidViewModel(applicati
             OnboardingStep.InstagramIntro -> _currentStep.value = OnboardingStep.Outro
             OnboardingStep.InstagramNotification -> _currentStep.value = OnboardingStep.InstagramIntro
             OnboardingStep.Exercise -> _currentStep.value = OnboardingStep.InstagramNotification
+            OnboardingStep.ExerciseSummary -> _currentStep.value = OnboardingStep.Exercise
             else -> {}
         }
     }
@@ -74,6 +80,16 @@ class OnboardingViewModel(application: Application) : AndroidViewModel(applicati
     fun setCompleted() {
         viewModelScope.launch {
             dataSource.setOnboardingCompleted(true)
+        }
+    }
+
+    /**
+     * Reset onboarding for debugging purposes
+     */
+    fun resetOnboarding() {
+        viewModelScope.launch {
+            dataSource.setOnboardingCompleted(false)
+            _currentStep.value = OnboardingStep.Welcome
         }
     }
 }

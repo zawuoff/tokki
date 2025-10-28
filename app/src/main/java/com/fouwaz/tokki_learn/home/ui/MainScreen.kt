@@ -41,6 +41,7 @@ fun MainScreen(
     onToggleApp: (String, Boolean) -> Unit,
     onRequestPermission: (PermissionType) -> Unit,
     onSetCooldown: (Int) -> Unit,
+    onResetOnboarding: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -60,6 +61,16 @@ fun MainScreen(
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+        }
+
+        // Debug button to reset onboarding
+        item {
+            Button(
+                onClick = onResetOnboarding,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = "🔧 Reset Onboarding (Debug)")
+            }
         }
 
         item {

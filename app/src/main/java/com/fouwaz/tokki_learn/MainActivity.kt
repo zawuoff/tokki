@@ -22,6 +22,7 @@ import com.fouwaz.tokki_learn.onboarding.ui.OnboardingOutroScreen
 import com.fouwaz.tokki_learn.onboarding.ui.OnboardingInstagramIntroScreen
 import com.fouwaz.tokki_learn.onboarding.ui.OnboardingInstagramNotificationScreen
 import com.fouwaz.tokki_learn.onboarding.ui.OnboardingExerciseScreen
+import com.fouwaz.tokki_learn.onboarding.ui.OnboardingPostExerciseScreen
 import com.fouwaz.tokki_learn.ui.theme.Tokki_learnTheme
 
 class MainActivity : ComponentActivity() {
@@ -83,6 +84,12 @@ class MainActivity : ComponentActivity() {
                                 onPrevious = { onboardingViewModel.goBack() }
                             )
                         }
+                        OnboardingStep.ExerciseSummary -> {
+                            OnboardingPostExerciseScreen(
+                                onNext = { onboardingViewModel.onExerciseSummaryContinue() },
+                                onPrevious = { onboardingViewModel.goBack() }
+                            )
+                        }
                     }
                 } else {
                     MainScreen(
@@ -95,6 +102,9 @@ class MainActivity : ComponentActivity() {
                         },
                         onSetCooldown = { minutes ->
                             mainViewModel.setGlobalCooldown(minutes)
+                        },
+                        onResetOnboarding = {
+                            onboardingViewModel.resetOnboarding()
                         }
                     )
                 }
