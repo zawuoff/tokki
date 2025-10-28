@@ -1,6 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Toki</string>
-    <string name="accessibility_service_description">
-        Toki watches for the apps you choose and shows a quick learning checkpoint before you continue.
-    </string>
+    <string name="accessibility_service_description">Toki watches for the apps you choose and shows a quick learning checkpoint before you continue.</string>
+    <!-- Onboarding -->
+    <string name="onboarding_title">Transform screen time into study time</string>
+    <string name="onboarding_subtitle">Get fluent without changing your routine, just unlock and learn</string>
+    <string name="onboarding_cta">Let\'s learn</string>
+    <string name="onboarding_unlocks_title">You check your phone dozens of times a day? We all do.</string>
+    <string name="onboarding_unlocks_subtitle_line1">On an average a person</string>
+    <string name="onboarding_unlocks_subtitle_line2_prefix">unlocks</string>
+    <string name="onboarding_unlocks_subtitle_emphasis">68 times</string>
+    <string name="onboarding_unlocks_subtitle_line2_suffix">a day</string>
+    <string name="onboarding_distraction_title">But what if every distraction taught you something new?</string>
+    <string name="onboarding_distraction_subtitle_first">68</string>
+    <string name="onboarding_distraction_subtitle_distractions">distractions</string>
+    <string name="onboarding_distraction_subtitle_equals">=</string>
+    <string name="onboarding_distraction_subtitle_second_num">68</string>
+    <string name="onboarding_distraction_subtitle_words">words</string>
+    <string name="onboarding_distraction_subtitle_learned">learned</string>
+    <string name="onboarding_outro_title">Welcome to tokki</string>
+    <string name="onboarding_outro_subtitle">where distraction turns into learning</string>
+    <string name="instagram_intro_app_name">Instagram</string>
+    <string name="instagram_intro_text_line1">Let us show you how</string>
+    <string name="instagram_intro_text_line2_tokki">tokki</string>
+    <string name="instagram_intro_text_line2_works">works</string>
+    <string name="instagram_intro_button_next">Next</string>
+    <string name="instagram_notification_subtitle">Click the logo</string>
 </resources>

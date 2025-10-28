@@ -3,6 +3,7 @@ package com.fouwaz.tokki_learn.data.datastore
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
@@ -18,6 +19,7 @@ class UserPreferencesDataSource(
 
     private val blockedPackagesKey = stringSetPreferencesKey("blocked_packages")
     private val cooldownMinutesKey = intPreferencesKey("global_cooldown_minutes")
+    private val onboardingCompletedKey = booleanPreferencesKey("onboarding_completed")
 
     val blockedPackages: Flow<Set<String>> = dataStore.data.map { preferences ->
         preferences[blockedPackagesKey] ?: emptySet()
@@ -25,6 +27,10 @@ class UserPreferencesDataSource(
 
     val globalCooldownMinutes: Flow<Int> = dataStore.data.map { preferences ->
         preferences[cooldownMinutesKey] ?: DEFAULT_COOLDOWN_MINUTES
+    }
+
+    val onboardingCompleted: Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[onboardingCompletedKey] ?: false
     }
 
     val lastGateTimestamps: Flow<Map<String, Long>> = dataStore.data.map { preferences ->
@@ -61,6 +67,12 @@ class UserPreferencesDataSource(
     suspend fun setGlobalCooldownMinutes(minutes: Int) {
         dataStore.edit { preferences ->
             preferences[cooldownMinutesKey] = minutes
+        }
+    }
+
+    suspend fun setOnboardingCompleted(completed: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[onboardingCompletedKey] = completed
         }
     }
 

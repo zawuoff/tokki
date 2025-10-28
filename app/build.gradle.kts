@@ -6,9 +6,7 @@ plugins {
 
 android {
     namespace = "com.fouwaz.tokki_learn"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.fouwaz.tokki_learn"
